@@ -9,12 +9,12 @@
             <el-menu-item-group>
               <template slot="title">分类</template>
               <el-menu-item index="/categories/edit">新建分类</el-menu-item>
-              <el-menu-item index="1-2">分类列表</el-menu-item>
+              <el-menu-item index="/categories/list">分类列表</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
               <template slot="title">文章</template>
-              <el-menu-item index="1-1">新建文章</el-menu-item>
-              <el-menu-item index="1-2">文章列表</el-menu-item>
+              <el-menu-item index="/articles/edit">新建文章</el-menu-item>
+              <el-menu-item index="/articles/list">文章列表</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
               <template slot="title">用户</template>
