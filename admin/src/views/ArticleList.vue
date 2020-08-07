@@ -49,7 +49,6 @@ export default {
         .then(async () => {
           const res = await this.$http.delete(`/rest/articles/${row._id}`);
           if (res.data.status === 0) {
-            console.log(res);
             this.$message({
               type: "success",
               message: res.data.message,

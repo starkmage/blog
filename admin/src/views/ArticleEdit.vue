@@ -22,7 +22,7 @@
         <el-switch v-model="model.isTop" active-text="是" inactive-text="否"></el-switch>
       </el-form-item>
       <el-form-item label="正文">
-        <mavon-editor ref="md" v-model="model.body"></mavon-editor>
+        <mavon-editor ref="md" v-model="model.body" :ishljs="true" code_style="monokai-sublime"></mavon-editor>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="save">保存</el-button>
@@ -36,7 +36,7 @@ export default {
   name: "ArticleEdit",
   props: {
     id: {
-      type: String
+      type: String,
     },
   },
   data() {
@@ -63,19 +63,19 @@ export default {
           type: "success",
           message: res.data.message,
         });
-        this.$router.push('/articles/list')
+        this.$router.push("/articles/list");
       }
     },
 
     //抓取编辑文章的先前内容
     async fetch() {
-      const res = await this.$http.get(`rest/articles/${this.id}`)
-      this.model = res.data
-    }
+      const res = await this.$http.get(`rest/articles/${this.id}`);
+      this.model = res.data;
+    },
   },
   created() {
     this.fetchCatrgories();
-    this.id && this.fetch()
+    this.id && this.fetch();
   },
 };
 </script>

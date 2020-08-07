@@ -11,7 +11,8 @@ const http = axios.create({
 http.interceptors.request.use(config => {
   const token = localStorage.getItem('token') || ''
   if (token) {
-    config.headers.Authorization = 'Bearer' + token
+    //一定要注意，Bearer后边的空格！！！！！！！！！！！
+    config.headers.Authorization = 'Bearer ' + token
   }
   return config
 }, err => {
@@ -31,6 +32,10 @@ http.interceptors.response.use(response => {
   }
   //
   if (err.response.status === 401) {
+    Vue.prototype.$message({
+      type: 'error',
+      message: err.response.data.message
+    })
     router.push('/login')
   }
   return Promise.reject(err)

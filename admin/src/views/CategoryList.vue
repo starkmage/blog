@@ -40,13 +40,15 @@ export default {
         type: "warning",
       })
         .then(async () => {
-          const res = await this.$http.delete(`/rest/articles/${row._id}`);
-          this.$message({
-            type: "success",
-            message: res.data.message,
-          });
-          //删除后立即更新列表
-          this.fetch();
+          const res = await this.$http.delete(`/rest/categories/${row._id}`);
+          if (res.data.status === 0) {
+            this.$message({
+              type: "success",
+              message: res.data.message,
+            });
+            //删除后立即更新列表
+            this.fetch();
+          }
         })
         .catch(() => {
           this.$message({

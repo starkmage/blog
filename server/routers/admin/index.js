@@ -1,11 +1,14 @@
 module.exports = app => {
   const express = require('express')
+  const bcrypt = require('bcrypt')
+  const jwt = require('jsonwebtoken')
 
   const resourceMiddleware = require('../../middleware/resource')
+  const authMiddleware = require('../../middleware/auth')
 
+  const AdminUser = require('../../models/AdminUser')
   const router = express.Router()
 
-  app.use('/admin/api/rest/:resource', resourceMiddleware(), router)
 
   //获取资源
   router.get('/', async (req, res) => {
@@ -49,6 +52,50 @@ module.exports = app => {
     res.send({
       status: 0,
       message: '保存成功'
+    })
+  })
+
+  app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
+
+
+  //登录验证
+  app.post('/admin/api/login', async(req, res) => {
+    const { username, password } = req.body
+    if (!username) {
+      res.status(422).send({
+        message: '用户名不能为空'
+       })
+       return
+    }
+    if (!password) {
+      res.status(422).send({
+        message: '密码不能为空'
+       })
+       return
+    }
+    //1.验证用户是否存在
+    const user = await AdminUser.findOne({username}).select('+password')
+    if (!user) {
+      res.status(422).send({
+        message: '用户名或密码错误'
+       })
+       return
+    }
+    //2.验证密码是否正确
+    const isValid = bcrypt.compareSync(password, user.password)
+    if (!isValid) {
+      res.status(422).send({
+        message: '用户名或密码错误'
+       })
+       return
+    }
+    //3.生成token发送给客户端
+    //第一个参数，token要包含的数据，第二个参数，验证token时的密钥
+    const token = jwt.sign({id: user._id}, app.get('secret'))
+    res.send({
+      status: 0,
+      username: user.username,
+      token: token
     })
   })
 }

@@ -6,10 +6,17 @@ const CategoryEdit = () => import('../views/CategoryEdit')
 const CategoryList = () => import('../views/CategoryList')
 const ArticleEdit = () => import('../views/ArticleEdit')
 const ArticleList = () => import('../views/ArticleList')
+const AdminUserEdit = () => import('../views/AdminUserEdit')
+const AdminUserList = () => import('../views/AdminUserList')
+const Login = () => import('../views/Login')
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/login',
+    component: Login
+  },
   {
     path: '/',
     name: 'home',
@@ -41,6 +48,19 @@ const routes = [
       {
         path: '/articles/list',
         component: ArticleList
+      },
+      {
+        path: '/adminusers/edit',
+        component: AdminUserEdit
+      },
+      {
+        path: '/adminusers/edit/:id',
+        component: AdminUserEdit,
+        props: true
+      },
+      {
+        path: '/adminusers/list',
+        component: AdminUserList
       }
     ]
   }
