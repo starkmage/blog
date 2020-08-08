@@ -5,9 +5,6 @@
       <el-form-item label="标题">
         <el-input v-model="model.title"></el-input>
       </el-form-item>
-      <el-form-item label="摘要">
-        <el-input v-model="model.summary" type="textarea"></el-input>
-      </el-form-item>
       <el-form-item label="分类">
         <el-select multiple v-model="model.categories" placeholder="请选择文章分类">
           <el-option
@@ -17,9 +14,6 @@
             :value="item._id"
           ></el-option>
         </el-select>
-      </el-form-item>
-      <el-form-item label="置顶">
-        <el-switch v-model="model.isTop" active-text="是" inactive-text="否"></el-switch>
       </el-form-item>
       <el-form-item label="正文">
         <mavon-editor ref="md" v-model="model.body" :ishljs="true" code_style="monokai-sublime"></mavon-editor>

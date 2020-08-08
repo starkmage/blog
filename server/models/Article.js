@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
   title: { type: String },
-  summary: { type: String },
-  isTop: { type: Boolean },
+  icon: {type: String, default: 'https://cdn.jsdelivr.net/gh/starkmage/ImgHosting/starkmage-picgo/3bd1ecd8242e280b23c89874df29bc1.jpg'},
   body: { type: String },
   categories: [{type: mongoose.SchemaTypes.ObjectId, ref: 'Category'}]
 }, {
@@ -11,4 +10,6 @@ const schema = new mongoose.Schema({
   timestamps: true
 })
 
-module.exports = mongoose.model('Article', schema)
+const model = mongoose.model('Article', schema)
+
+module.exports = model

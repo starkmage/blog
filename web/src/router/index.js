@@ -2,6 +2,9 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 const Main = () => import('../views/Main')
+const Home = () => import('../views/Home')
+const Archive = () => import('../views/Archive')
+const Tag = () => import('../views/Tag')
 
 Vue.use(VueRouter)
 
@@ -13,6 +16,7 @@ const routes = [
       {
         path: '/',
         name: 'Home',
+        component: Home,
         meta: {
           title: 'Lawson-首页'
         }
@@ -20,6 +24,7 @@ const routes = [
       {
         path: '/archives',
         name: 'Archive',
+        component: Archive,
         meta: {
           title: 'Lawson-归档'
         }
@@ -27,6 +32,7 @@ const routes = [
       {
         path: '/tags',
         name: 'Tag',
+        component: Tag,
         meta: {
           title: 'Lawson-标签'
         }
@@ -63,7 +69,14 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: 'history'
+  mode: 'history',
+  //切换页面时回到顶部
+  scrollBehavior() {
+    return {
+      x: 0,
+      y: 0
+    }
+  }
 })
 
 router.beforeEach((to, from, next) => {

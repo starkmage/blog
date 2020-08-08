@@ -2,7 +2,7 @@
   <header class="head nav d-flex jc-around ai-center" :class="isScrolling ? `mini` : ''">
     <div class="hand">
       <router-link tag="div" to="/" class="lawson">
-        <span>欢迎光临罗森</span>
+        <span>罗森便利店</span>
         <img src="../assets/img/logo.jpg" height="42" class="main-img" />
       </router-link>
     </div>

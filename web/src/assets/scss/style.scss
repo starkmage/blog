@@ -197,6 +197,10 @@ li {
   cursor: pointer;
 }
 
+.not-text {
+  cursor: default;
+}
+
 .show {
   transition: transform 0.25s ease;
   list-style: none;
@@ -279,7 +283,7 @@ li {
   }
 }
 
-.archive-page .categorys-title::before {
+.archive-page .categories-title::before {
   position: absolute;
   top: 0;
   left: -15px;

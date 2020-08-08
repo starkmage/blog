@@ -10,12 +10,14 @@ app.set('secret', '221jfdsklfj1')
 app.use(cors())
 app.use(express.json())
 
-//图片上传目录
+//文章缩略图上传目录
 // app.use('/uploads', express.static(__dirname + '/uploads'))
 
 require('./db/db')(app)
 //挂载admin的路由
 require('./routers/admin/index')(app)
+//挂载web的路由
+require('./routers/web/index')(app)
 
 
 app.listen('8000', () => {
