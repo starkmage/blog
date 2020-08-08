@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import './plugins/element'
-import './assets/scss/style.scss'
+import './assets/css/style.css'
 import './plugins/date-filters'
 import http from './network//http'
 //markdown编辑插件
