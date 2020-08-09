@@ -37,9 +37,9 @@
           <el-dropdown-item divided>
             <router-link tag="div" to="/tags">标签</router-link>
           </el-dropdown-item>
-          <el-dropdown-item divided>
+<!--           <el-dropdown-item divided>
             <router-link tag="div" to="/message">留言</router-link>
-          </el-dropdown-item>
+          </el-dropdown-item> -->
           <el-dropdown-item divided>
             <router-link tag="div" to="/about">关于</router-link>
           </el-dropdown-item>
@@ -60,7 +60,7 @@ export default {
         { text: "首页", link: "/" },
         { text: "归档", link: "/archives" },
         { text: "标签", link: "/tags" },
-        { text: "留言", link: "/message" },
+        // { text: "留言", link: "/message" },
         { text: "关于", link: "/about" },
       ],
     };

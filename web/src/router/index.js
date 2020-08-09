@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import NProgress from '../plugins/nprogress'
 
 const Main = () => import('../views/Main')
 const Home = () => import('../views/Home')
 const Archive = () => import('../views/Archive')
 const Tag = () => import('../views/Tag')
+const Article = () => import('../views/Article')
+const About = () => import('../views/About')
 
 Vue.use(VueRouter)
 
@@ -37,16 +40,17 @@ const routes = [
           title: 'Lawson-标签'
         }
       },
-      {
+      /* {
         path: '/message',
         name: 'Message',
         meta: {
           title: 'Lawson-留言'
         }
-      },
+      }, */
       {
         path: '/about',
         name: "About",
+        component: About,
         meta: {
           title: 'Lawson-关于'
         }
@@ -54,6 +58,8 @@ const routes = [
       {
         path: '/article/list/:id',
         name: 'Article',
+        props: true,
+        component: Article,
         meta: {
           title: 'Lawson-文章详情'
         }
@@ -80,10 +86,17 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  //每次切换页面时，加载进度条
+  NProgress.start()
   if (to.meta.title) {
     document.title = to.meta.title
   }
   next()
+})
+
+router.afterEach(() => {
+  //即将进入新的页面组件前，关闭掉进度条
+  NProgress.done()
 })
 
 export default router

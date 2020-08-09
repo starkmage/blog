@@ -16,7 +16,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="正文">
-        <mavon-editor ref="md" v-model="model.body" :ishljs="true" code_style="monokai-sublime"></mavon-editor>
+        <mavon-editor ref="md" v-model="model.mdbody" :ishljs="true" code_style="monokai-sublime"></mavon-editor>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="save">保存</el-button>
@@ -46,7 +46,8 @@ export default {
     },
 
     async save() {
-      let res;
+      this.model.htbody = this.$refs.md.d_render
+      let res
       if (!this.id) {
         res = await this.$http.post("/rest/articles", this.model);
       } else {
