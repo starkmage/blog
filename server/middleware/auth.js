@@ -23,7 +23,7 @@ module.exports = options => {
         })
       }
     } catch(err) {
-      res.status(401).send({
+      res.status(500).send({
         message:'Server error'
       })
     }

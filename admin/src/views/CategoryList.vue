@@ -4,7 +4,7 @@
     <el-table :data="model" style="width: 100%">
       <el-table-column prop="_id" label="ID" width="280"></el-table-column>
       <el-table-column prop="title" label="名称"></el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <el-button
             @click="() => $router.push(`/categories/edit/${scope.row._id}`)"

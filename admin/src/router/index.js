@@ -15,7 +15,11 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/login',
-    component: Login
+    name: 'login',
+    component: Login,
+    meta: {
+      isPublic: true
+    }
   },
   {
     path: '/',
@@ -63,11 +67,23 @@ const routes = [
         component: AdminUserList
       }
     ]
+  },
+  //对其它路径，重定位到首页
+  {
+    path: '*',
+    redirect: '/'
   }
 ]
 
 const router = new VueRouter({
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPublic && !localStorage.token) {
+    return next('/login')
+  }
+  next()
 })
 
 export default router

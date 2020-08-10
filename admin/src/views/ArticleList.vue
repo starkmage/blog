@@ -10,7 +10,7 @@
       <el-table-column prop="updatedAt" label="最后更新时间">
         <template scope="scope">{{scope.row.updatedAt | date('YYYY-MM-DD HH:mm:ss')}}</template>
       </el-table-column>
-      <el-table-column label="操作" width="100">
+      <el-table-column label="操作" width="180">
         <template slot-scope="scope">
           <el-button
             @click="() => $router.push(`/articles/edit/${scope.row._id}`)"

@@ -1,18 +1,21 @@
 <template>
   <div class="main">
-    <Header></Header>
+    <my-header></my-header>
+    <my-snow></my-snow>
     <router-view style="min-height: 800px;"></router-view>
-    <Footer></Footer>
+    <my-footer></my-footer>
   </div>
 </template>
 
 <script>
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import MyHeader from '../components/MyHeader'
+import MyFooter from '../components/MyFooter'
+import MySnow from '../components/MySnow'
 export default {
   components: {
-    Header,
-    Footer
+    MyHeader,
+    MyFooter,
+    MySnow
   }
 }
 </script>

@@ -38,6 +38,13 @@ http.interceptors.response.use(response => {
     })
     router.push('/login')
   }
+
+  if (err.response.status === 500) {
+    Vue.prototype.$message({
+      type: 'error',
+      message: err.response.data.message
+    })
+  }
   return Promise.reject(err)
 })
 

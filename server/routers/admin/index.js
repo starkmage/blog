@@ -55,6 +55,7 @@ module.exports = app => {
     })
   })
 
+  //登录验证中间件和资源中间件
   app.use('/admin/api/rest/:resource', authMiddleware(), resourceMiddleware(), router)
 
 
@@ -96,6 +97,13 @@ module.exports = app => {
       status: 0,
       username: user.username,
       token: token
+    })
+  })
+
+  //错误统一处理函数
+  app.use(async (err, req, res, next) => {
+    res.status(err.statusCode || 500).send({
+      message: err.message
     })
   })
 }

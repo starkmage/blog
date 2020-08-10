@@ -16,23 +16,22 @@
           <router-link
             tag="div"
             :to="`/article/list/${article._id}`"
-            class="top mt-10 mx-8 mb-0 hand article-icon"
-            :style="{ 'background-image': `url(${article.icon})` }"
-          ></router-link>
-          <div class="bg-postcolor pt-8 mx-8 title">
+            class="top mt-10 mx-8 mb-0 hand article-icon" 
+          ><img :src="require(`../assets/img/article/icon${index+1}.jpg`)" height="260px" width="280px" alt=""></router-link>
+          <div class="bg-postcolor pt-8 mx-8 title article-info">
             <router-link
               tag="span"
               :to="`/article/list/${article._id}`"
-              class="fs-xxl jc-center d-flex flex-wrap hand text-grey-1"
+              class="fs-xxl jc-center d-flex flex-wrap hand text-grey-1 px-4"
             >{{article.title}}</router-link>
-            <div class="d-flex mt-4 p-7 text-grey-1">
+            <div class="d-flex mt-4 p-7 text-grey-1 jc-center">
               <i class="iconfont icon-riqi2 pr-2"></i>
               <span class="fs-sm not-text">{{ article.createdAt | date("YYYY-MM-DD") }}</span>
               <i class="iconfont icon-sort pl-9"></i>
               <router-link
                 tag="span"
                 to="/tags"
-                class="fs-sm pl-2 mr-6 hand"
+                class="fs-sm pl-2 hand"
               >{{ article.categories[0].title }}</router-link>
               <!-- <i class="iconfont icon-love text-blue hand"></i> -->
             </div>
@@ -82,66 +81,68 @@
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from "jquery";
 export default {
   data() {
     return {
       articles: [],
       pagination: {
         totalPage: 1,
-        currentPage: 1
-      }
-    }
+        currentPage: 1,
+      },
+    };
   },
   methods: {
     //从服务端获取数据
     async fetchData() {
-      const res = await this.$http.get(`/articles/${this.pagination.currentPage}`)
-      this.articles = res.data.list
-      this.pagination.totalPage = res.data.totalPage
-      this.pagination.currentPage = res.data.currentPage
+      const res = await this.$http.get(
+        `/articles/${this.pagination.currentPage}`
+      );
+      this.articles = res.data.list;
+      this.pagination.totalPage = res.data.totalPage;
+      this.pagination.currentPage = res.data.currentPage;
     },
 
     //跳转到指定页数
     async gotoPage(pageNum) {
-      this.pagination.currentPage = pageNum
-      this.fetchData()
+      this.pagination.currentPage = pageNum;
+      this.fetchData();
     },
 
     //上一页
     prev() {
-      if (this.pagination.currentPage === 1) return
-      this.pagination.currentPage--
-      this.fetchData()
+      if (this.pagination.currentPage === 1) return;
+      this.pagination.currentPage--;
+      this.fetchData();
     },
 
     //下一页
     next() {
-      if (this.pagination.currentPage === this.pagination.totalPage) return
-      this.pagination.currentPage++
-      this.fetchData()
+      if (this.pagination.currentPage === this.pagination.totalPage) return;
+      this.pagination.currentPage++;
+      this.fetchData();
     },
 
     //开启下滑箭头
     //animate() 方法执行 CSS 属性集的自定义动画
     //该方法通过 CSS 样式将元素从一个状态改变为另一个状态，CSS属性值是逐渐改变的，这样就可以创建动画效果。
     downPage() {
-      $('html, body').animate(
+      $("html, body").animate(
         {
           // scrollTop 设置垂直滚动条位置：
           //outerHeight() 方法返回第一个匹配元素的外部高度。该方法包含 padding 和 border
-          scrollTop: $('#header').outerHeight() - 56
+          scrollTop: $("#header").outerHeight() - 56,
         },
         //动画时间
         500
-      )
-    }
+      );
+    },
   },
 
   mounted() {
-    this.fetchData()
-  }
-}
+    this.fetchData();
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -209,8 +210,12 @@ export default {
   max-width: 1024px;
   margin: 0 auto;
   .top {
-    width: 270px;
-    height: 250px;
+    width: 280px;
+    height: 260px;
+  }
+  .article-info {
+    width: 280px;
+
   }
 }
 
