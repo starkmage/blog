@@ -2,8 +2,8 @@
   <header class="head nav d-flex jc-around ai-center" :class="isScrolling ? `mini` : ''">
     <div class="hand">
       <router-link tag="div" to="/" class="lawson">
-        <span>罗森便利店</span>
-        <img src="../assets/img/logo.jpg" height="42" class="main-img" />
+        <!-- <span>好电脑</span> -->
+        <img src="../assets/img/logo.png" height="42" class="main-img" />
       </router-link>
     </div>
     <div class="d-flex text-white hand">
@@ -37,9 +37,6 @@
           <el-dropdown-item divided>
             <router-link tag="div" to="/tags">标签</router-link>
           </el-dropdown-item>
-<!--           <el-dropdown-item divided>
-            <router-link tag="div" to="/message">留言</router-link>
-          </el-dropdown-item> -->
           <el-dropdown-item divided>
             <router-link tag="div" to="/about">关于</router-link>
           </el-dropdown-item>

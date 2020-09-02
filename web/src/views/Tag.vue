@@ -22,7 +22,7 @@
                   <router-link
                     :data-hover="`${item.article.title}`"
                     :title="`访问${item.article.title}`"
-                    :to="`/article/list/${item.article._id}`"
+                    :to="`/article/${item.article._id}`"
                   >{{item.article.title}}</router-link>
                 </div>
                 <div class="item-meta">

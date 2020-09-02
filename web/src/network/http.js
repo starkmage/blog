@@ -2,7 +2,8 @@ import axios from 'axios'
 import NProgress from '../plugins/nprogress'
 
 const http = axios.create({
-  baseURL: 'http://localhost:8000/web/api',
+  baseURL: process.env.VUE_APP_API_URL || '/web/api',
+
   timeout: 50000
 })
 

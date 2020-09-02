@@ -114,7 +114,7 @@ module.exports = app => {
   })
 
   //文章详情
-  router.get('/articles/list/:id', async (req, res) => {
+  router.get('/article/:id', async (req, res) => {
     const data = await Article.findById(req.params.id).populate('categories')
     res.send(data)
   })

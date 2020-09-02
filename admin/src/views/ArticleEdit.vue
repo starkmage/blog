@@ -16,7 +16,13 @@
         </el-select>
       </el-form-item>
       <el-form-item label="正文">
-        <mavon-editor ref="md" v-model="model.mdbody" :ishljs="true" code_style="monokai-sublime"></mavon-editor>
+        <mavon-editor
+          ref="md"
+          v-model="model.mdbody"
+          :ishljs="true"
+          code_style="monokai-sublime"
+          @imgAdd="$imgAdd"
+        ></mavon-editor>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="save">保存</el-button>
@@ -67,6 +73,15 @@ export default {
       const res = await this.$http.get(`rest/articles/${this.id}`);
       this.model = res.data;
     },
+    //上传图片
+    $imgAdd(pos, $file) {
+      const formData = new FormData()
+      formData.append('file', $file)
+      this.$http.post('upload', formData).then(res => {
+        console.log(res);
+        this.$refs.md.$img2Url(pos, res.data)
+      })
+    }
   },
   created() {
     this.fetchCatrgories();

@@ -12,7 +12,7 @@
                 <div class="item-label bg-postcolor">
                   <div class="item-title pl-4">
                     <router-link
-                      :to="`/article/list/${article._id}`"
+                      :to="`/article/${article._id}`"
                       :title="`访问${article.title}`"
                     >{{article.title}}</router-link>
                   </div>

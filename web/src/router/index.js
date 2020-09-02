@@ -21,7 +21,7 @@ const routes = [
         name: 'Home',
         component: Home,
         meta: {
-          title: 'Lawson-首页'
+          title: '首页'
         }
       },
       {
@@ -29,7 +29,7 @@ const routes = [
         name: 'Archive',
         component: Archive,
         meta: {
-          title: 'Lawson-归档'
+          title: '归档'
         }
       },
       {
@@ -37,35 +37,28 @@ const routes = [
         name: 'Tag',
         component: Tag,
         meta: {
-          title: 'Lawson-标签'
+          title: '标签'
         }
       },
-      /* {
-        path: '/message',
-        name: 'Message',
-        meta: {
-          title: 'Lawson-留言'
-        }
-      }, */
       {
         path: '/about',
         name: "About",
         component: About,
         meta: {
-          title: 'Lawson-关于'
+          title: '关于好电脑'
         }
       },
       {
-        path: '/article/list/:id',
+        path: '/article/:id',
         name: 'Article',
         props: true,
         component: Article,
         meta: {
-          title: 'Lawson-文章详情'
+          title: '文章详情'
         }
       }
     ]
-  }, 
+  },
   //对其它路径，重定位到首页
   {
     path: '*',
@@ -76,12 +69,10 @@ const routes = [
 const router = new VueRouter({
   routes,
   mode: 'history',
-  //切换页面时回到顶部
-  scrollBehavior() {
-    return {
-      x: 0,
-      y: 0
-    }
+  // 切换页面时回到顶部
+  scrollBehavior(to, from, savedPosition) {
+    //第三个参数 savedPosition 当且仅当 popstate 导航 (通过浏览器的 前进/后退 按钮触发) 时才可用
+    return savedPosition ? savedPosition : {x: 0, y: 0}
   }
 })
 

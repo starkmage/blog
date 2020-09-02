@@ -11,15 +11,15 @@
         <div class="px-7 hand">
           <a href="https://t.me/stark_tg" target="_blank" class="text-grey-1">Telegram</a>
         </div>
-        <div class="px-7 hand">
+        <!-- <div class="px-7 hand">
           <a href="https://twitter.com/stark_mage" target="_blank" class="text-grey-1">Twitter</a>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="footer pt-3 bg-navcolor">
       <div class="pt-5 d-flex jc-center">
         <div class="px-8 mb-4">
-          <img src="../assets/img/logo.jpg" height="32" />
+          <img src="../assets/img/logo.png" height="32" />
           <div class="text-grey-2 fs-sm">
             <p class="load">日常总结，分享点滴</p>
             <p>
@@ -27,11 +27,20 @@
               <a href="https://github.com/starkmage" target="_blank">starkmage</a>
             </p>
             <p>
+              <img src="../assets/img/beian.png" alt="" style="vertical-align: middle">
               <a
-                href="http://www.beian.miit.gov.cn/"
+                href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=31009102000094"
                 target="_blank"
                 class="text-grey-2"
-              >沪ICP备20010345号-1</a>
+                style="vertical-align: middle"
+              >沪公网安备 31009102000094号</a>
+            </p>
+            <p>
+              <a
+                href="http://beian.miit.gov.cn/"
+                target="_blank"
+                class="text-grey-2"
+              >沪ICP备2020025460号-1</a>
             </p>
           </div>
         </div>
@@ -44,7 +53,7 @@
               tag="p"
               v-for="item in model"
               :key="item._id"
-              :to="`/article/list/${item._id}`"
+              :to="`/article/${item._id}`"
             >{{item.title}}</router-link>
           </div>
         </div>

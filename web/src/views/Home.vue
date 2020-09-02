@@ -3,7 +3,7 @@
     <div class="mb-7">
       <div class="bgImg d-flex jc-center" id="header">
         <div class="text-white d-flex jc-center ai-center">
-          <span class="shouye-text">欢迎光临罗森</span>
+          <span class="shouye-text">多喝热水</span>
         </div>
         <div class="arrow-down">
           <i class="iconfont icon-down" @click="downPage"></i>
@@ -15,13 +15,13 @@
         <div class="show home-art">
           <router-link
             tag="div"
-            :to="`/article/list/${article._id}`"
+            :to="`/article/${article._id}`"
             class="top mt-10 mx-8 mb-0 hand article-icon" 
-          ><img :src="require(`../assets/img/article/icon${index+1}.jpg`)" height="260px" width="280px" alt=""></router-link>
+          ><img :src="require(`../assets/img/article/icon${article.title.length % 6 + 1}.jpg`)" height="260px" width="280px" alt=""></router-link>
           <div class="bg-postcolor pt-8 mx-8 title article-info">
             <router-link
               tag="span"
-              :to="`/article/list/${article._id}`"
+              :to="`/article/${article._id}`"
               class="fs-xxl jc-center d-flex flex-wrap hand text-grey-1 px-4"
             >{{article.title}}</router-link>
             <div class="d-flex mt-4 p-7 text-grey-1 jc-center">
@@ -83,6 +83,7 @@
 <script>
 import $ from "jquery";
 export default {
+  name: 'Home',
   data() {
     return {
       articles: [],
@@ -107,6 +108,7 @@ export default {
     async gotoPage(pageNum) {
       this.pagination.currentPage = pageNum;
       this.fetchData();
+      this.downPage();
     },
 
     //上一页
@@ -114,6 +116,7 @@ export default {
       if (this.pagination.currentPage === 1) return;
       this.pagination.currentPage--;
       this.fetchData();
+      this.downPage();
     },
 
     //下一页
@@ -121,8 +124,8 @@ export default {
       if (this.pagination.currentPage === this.pagination.totalPage) return;
       this.pagination.currentPage++;
       this.fetchData();
+      this.downPage();
     },
-
     //开启下滑箭头
     //animate() 方法执行 CSS 属性集的自定义动画
     //该方法通过 CSS 样式将元素从一个状态改变为另一个状态，CSS属性值是逐渐改变的，这样就可以创建动画效果。
@@ -141,13 +144,13 @@ export default {
 
   mounted() {
     this.fetchData();
-  },
+  }
 };
 </script>
 
 <style lang="scss" scoped>
 .bgImg {
-  background-image: url("../assets/img/bg-blog.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/starkmage/ImgHosting/starkmage-picgo/bg-blog.png");
   width: 100%;
   height: 100vh;
   //图片初始位置

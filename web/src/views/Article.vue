@@ -8,16 +8,18 @@
           <p class="mr-4">{{model.createdAt | date("YYYY-MM-DD HH:mm:ss")}}</p>
           <p class="mr-4">字数：{{model.htbody.length}}</p>
         </div>
-        <div>
+        <div class="d-flex">
           <router-link
             tag="div"
             to="/tags"
-            class="p-2 bdr post-tags text-border text-center bg-blue fs-sm hand mb-6"
+            class="p-2 bdr post-tags text-border text-center bg-blue fs-sm hand mb-6 mr-6"
+            v-for="item in model.categories"
+            :key="item._id"
           >
             <span>
               <i class="iconfont icon-tag1"></i>
             </span>
-            <span class>&nbsp;{{model.categories[0].title}}</span>
+            <span class>&nbsp;{{item.title}}</span>
           </router-link>
         </div>
         <div class="text-grey-2 fs-md mb-9 container">
@@ -72,7 +74,7 @@ export default {
   },
   methods: {
     async fetch() {
-      const res = await this.$http.get(`/articles/list/${this.id}`);
+      const res = await this.$http.get(`/article/${this.id}`);
       this.model = res.data;
 
       setTimeout(() => {
@@ -163,7 +165,7 @@ export default {
 }
 
 .post-tags {
-  max-width: 60px;
+  max-width: 120px;
 }
 
 .post-tags:hover {
