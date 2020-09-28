@@ -5,7 +5,7 @@ const accessKey = ''    //七牛的accessKey
 const secretKey = ''    //七牛的secretKey 
 const mac = new qiniu.auth.digest.Mac(accessKey, secretKey)
 const options = {
-    scope: '',         //对象存储空间名字
+    scope: '',         //对象存储空间的名字
     expires: 7200
 }
 const putPolicy = new qiniu.rs.PutPolicy(options)
