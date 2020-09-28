@@ -1,4 +1,9 @@
 # 基于Node.js+MongoDB+Vue开发的个人博客系统
+
+## 项目简介
+
+* 包括 admin 后台管理系统，server 后端接口，web 博客主页面三部分，前后端分离开发，项目已部署在腾讯云服务器
+
 ## 技术栈
 
 ### 前端
@@ -21,3 +26,7 @@
 * **mongoose**：Node.js提供连接 MongoDB的一个模块
 * **cors**：解决跨域问题
 * **jsonwebtoken**：完成jwt校验
+
+### 自动化工具
+
+* **vue-cli**：Vue脚手架工具，快速初始化项目代码，打包项目

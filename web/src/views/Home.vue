@@ -81,7 +81,6 @@
 </template>
 
 <script>
-import $ from "jquery";
 export default {
   name: 'Home',
   data() {
@@ -130,19 +129,25 @@ export default {
     //animate() 方法执行 CSS 属性集的自定义动画
     //该方法通过 CSS 样式将元素从一个状态改变为另一个状态，CSS属性值是逐渐改变的，这样就可以创建动画效果。
     downPage() {
-      $("html, body").animate(
-        {
-          // scrollTop 设置垂直滚动条位置：
-          //outerHeight() 方法返回第一个匹配元素的外部高度。该方法包含 padding 和 border
-          scrollTop: $("#header").outerHeight() - 56,
-        },
-        //动画时间
-        500
-      );
+      // $("html, body").animate(
+      //   {
+      //     // scrollTop 设置垂直滚动条位置：
+      //     //outerHeight() 方法返回第一个匹配元素的外部高度。该方法包含 padding 和 border
+      //     scrollTop: $("#header").outerHeight() - 56,
+      //   },
+      //   //动画时间
+      //   500
+      // );
+      const header = document.getElementById('header')
+      const need = header.clientHeight - 56
+      window.scrollTo({ 
+          top: need, 
+          behavior: "smooth" 
+      })
     },
   },
 
-  mounted() {
+  created() {
     this.fetchData();
   }
 };

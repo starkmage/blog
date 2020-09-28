@@ -6,7 +6,7 @@
         <div class="text-green fs-xxxxl mt-11">{{model.title}}</div>
         <div class="text-grey-2 d-flex fs-sm my-4">
           <p class="mr-4">{{model.createdAt | date("YYYY-MM-DD HH:mm:ss")}}</p>
-          <p class="mr-4">字数：{{model.htbody.length}}</p>
+          <p class="mr-4">字数：{{model.mdbody.length}}</p>
         </div>
         <div class="d-flex">
           <router-link

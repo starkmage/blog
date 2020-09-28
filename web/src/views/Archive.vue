@@ -51,7 +51,7 @@ export default {
       this.model = res.data
     }
   },
-  mounted() {
+  created() {
     this.getArchive()
   }
 }

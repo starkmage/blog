@@ -48,8 +48,12 @@ module.exports = app => {
           createdAt: -1
         }
       },
-      //$lookup联表查询
+      //$lookup联表查询，类似于populate
       //article里存了category的id，要从catrgory查详细信息
+/*       from    需要关联的集合名
+      localField    本集合中需要查找的字段
+      foreignField    另外一个集合中需要关联的字段
+      as    输出的字段名 */
       {
         $lookup: {
           from: 'categories',
@@ -58,16 +62,21 @@ module.exports = app => {
           as: 'newList'
         }
       },
+      // $group：将集合中的文档分组，可用于统计结果。对应group()方法
       {
         $group: {
+          // 使用$group时，_id是必须的，用作分组的依据条件
           _id: {
             $month: '$createdAt'
           },
           count: {
+            // 计算总和，这意思就是一个算1个，正常计数
             $sum: 1
           },
           list: {
+            // 在结果文档中插入值到一个数组中，前面是每一个对象的key，后面是value
             $push: {
+              // 这个 _id 就是上面的月份
               _id: '$_id',
               title: '$title',
               categories: '$newList',

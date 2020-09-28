@@ -2,7 +2,6 @@
   <header class="head nav d-flex jc-around ai-center" :class="isScrolling ? `mini` : ''">
     <div class="hand">
       <router-link tag="div" to="/" class="lawson">
-        <!-- <span>好电脑</span> -->
         <img src="../assets/img/logo.png" height="42" class="main-img" />
       </router-link>
     </div>
@@ -132,6 +131,7 @@ export default {
 .isShowMenu {
   i {
     &:nth-child(2) {
+      // 就是不显示了
       opacity: 0;
     }
     &:nth-child(1) {

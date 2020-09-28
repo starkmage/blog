@@ -57,7 +57,7 @@ export default {
       return dayjs(val).format("YYYY-MM-DD HH:mm:ss");
     },
   },
-  mounted() {
+  created() {
     this.fetch();
   },
 };
