@@ -67,7 +67,8 @@ module.exports = app => {
         $group: {
           // 使用$group时，_id是必须的，用作分组的依据条件
           _id: {
-            $month: '$createdAt'
+            year: {$year: '$createdAt'},
+            month: {$month: '$createdAt'}
           },
           count: {
             // 计算总和，这意思就是一个算1个，正常计数
@@ -76,7 +77,6 @@ module.exports = app => {
           list: {
             // 在结果文档中插入值到一个数组中，前面是每一个对象的key，后面是value
             $push: {
-              // 这个 _id 就是上面的月份
               _id: '$_id',
               title: '$title',
               categories: '$newList',
@@ -85,9 +85,10 @@ module.exports = app => {
           }
         }
       }
-    ]).sort({
-      '_id': -1
-    })
+    ])
+    // .sort({
+    //   '_id': -1
+    // })
     res.send(data)
   })
 

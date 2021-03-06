@@ -1,9 +1,9 @@
 <template>
   <div class="main-container" v-if="model">
     <div class="main-content archive-page">
-      <div class="categories-item mt-6" v-for="item in model" :key="item._id">
+      <div class="categories-item mt-6" v-for="item in model" :key="item._id.month">
         <div class="categories-title">
-          {{item.list[0].createdAt | date('YYYY')}}年{{item._id}}月
+          {{item.list[0].createdAt | date('YYYY')}}年{{item._id.month}}月
         </div>
         <div class="post-lists">
           <div class="post-lists-body">
@@ -49,6 +49,13 @@ export default {
     async getArchive() {
       const res = await this.$http.get('/archive')
       this.model = res.data
+      this.model.sort((a, b) => {
+        if (a._id.year === b._id.year) {
+          return b._id.month - a._id.month
+        } else {
+          return b._id.year - a._id.year
+        }
+      })
     }
   },
   created() {

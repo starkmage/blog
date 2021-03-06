@@ -155,7 +155,8 @@ export default {
 
 <style lang="scss" scoped>
 .bgImg {
-  background-image: url("https://cdn.jsdelivr.net/gh/starkmage/ImgHosting/starkmage-picgo/bg-blog.png");
+  // background-image: url("https://cdn.jsdelivr.net/gh/starkmage/ImgHosting/starkmage-picgo/bg-blog.png");
+    background-image: url('http://img.stark.pub/bg-blog.png');
   width: 100%;
   height: 100vh;
   //图片初始位置
